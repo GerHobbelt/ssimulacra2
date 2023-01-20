@@ -941,44 +941,6 @@ JXL_EXPORT JxlDecoderStatus JxlDecoderGetExtraChannelBlendInfo(
     const JxlDecoder* dec, size_t index, JxlBlendInfo* blend_info);
 
 /**
- * Returns the minimum size in bytes of the DC image output buffer
- * for the given format. This is the buffer for @ref JxlDecoderSetDCOutBuffer.
- * Requires the basic image information is available in the decoder.
- *
- * @param dec decoder object
- * @param format format of pixels
- * @param size output value, buffer size in bytes
- * @return @ref JXL_DEC_SUCCESS on success, @ref JXL_DEC_ERROR on error, such as
- *     information not available yet.
- *
- * @deprecated The DC feature in this form will be removed. Use @ref
- *     JxlDecoderFlushImage for progressive rendering.
- */
-JXL_DEPRECATED JXL_EXPORT JxlDecoderStatus JxlDecoderDCOutBufferSize(
-    const JxlDecoder* dec, const JxlPixelFormat* format, size_t* size);
-
-/**
- * Sets the buffer to write the lower resolution (8x8 sub-sampled) DC image
- * to. The size of the buffer must be at least as large as given by @ref
- * JxlDecoderDCOutBufferSize. The buffer follows the format described by
- * JxlPixelFormat. The DC image has dimensions ceil(xsize / 8) * ceil(ysize /
- * 8). The buffer is owned by the caller.
- *
- * @param dec decoder object
- * @param format format of pixels. Object owned by user and its contents are
- *     copied internally.
- * @param buffer buffer type to output the pixel data to
- * @param size size of buffer in bytes
- * @return @ref JXL_DEC_SUCCESS on success, @ref JXL_DEC_ERROR on error, such as
- *     size too small.
- *
- * @deprecated The DC feature in this form will be removed. Use @ref
- *     JxlDecoderFlushImage for progressive rendering.
- */
-JXL_DEPRECATED JXL_EXPORT JxlDecoderStatus JxlDecoderSetDCOutBuffer(
-    JxlDecoder* dec, const JxlPixelFormat* format, void* buffer, size_t size);
-
-/**
  * Returns the minimum size in bytes of the image output pixel buffer for the
  * given format. This is the buffer for @ref JxlDecoderSetImageOutBuffer.
  * Requires that the basic image information is available in the decoder in the
